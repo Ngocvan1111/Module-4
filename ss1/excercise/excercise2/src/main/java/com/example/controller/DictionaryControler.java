@@ -1,6 +1,9 @@
 package com.example.controller;
 
+import com.example.repository.IDictionaryRepository;
+import com.example.repository.impl.DictionaryRepository;
 import com.example.service.IDictionaryService;
+import com.example.service.impl.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,24 +16,20 @@ import java.util.Map;
 @Controller
 public class DictionaryControler {
     @Autowired
-    IDictionaryService iDictionaryService;
+    IDictionaryService iDictionaryService = new DictionaryService();
+
     @GetMapping("/")
     public String hone(){
         return "/home";
     }
     @GetMapping("/translate")
     public String translate(@RequestParam String inputWord, Model model){
-        Map<String, String> listWord = iDictionaryService.list();
-        boolean flag = true;
-        for (int i=0;i<listWord.size();i++){
-            if(listWord.containsKey(inputWord)){
-                model.addAttribute("result",listWord.get(inputWord));
-                flag = false;
-            }
-        }
-        if(flag){
-            model.addAttribute("result","Không có từ cần dịch");
-        }
+
+       String  result = iDictionaryService.translate(inputWord);
+
+
+            model.addAttribute("result",result);
+
         return "/home";
 
 

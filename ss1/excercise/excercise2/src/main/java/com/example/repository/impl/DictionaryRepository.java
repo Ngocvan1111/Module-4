@@ -1,10 +1,11 @@
 package com.example.repository.impl;
 
 import com.example.repository.IDictionaryRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+@Repository
 public class DictionaryRepository implements IDictionaryRepository {
     public static Map<String,String> list = new LinkedHashMap<>();
     static {
