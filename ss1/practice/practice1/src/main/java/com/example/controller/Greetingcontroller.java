@@ -10,6 +10,7 @@ public class Greetingcontroller {
     @GetMapping("/")
     public String greeting(@RequestParam(required = false) String name, Model model){
         model.addAttribute("name","Lại Văn Ngọc");
+
         return "index";
     }
 }
