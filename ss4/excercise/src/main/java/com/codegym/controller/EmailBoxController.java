@@ -5,15 +5,13 @@ import com.codegym.service.IEmailBoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("email/")
 public class EmailBoxController {
 
     @Autowired
@@ -30,13 +28,13 @@ public class EmailBoxController {
         model.addAttribute("pageSizes",pageSizes);
         model.addAttribute("emailBox",new EmailBox());
 
-        return "/settings";
+        return "email/settings";
     }
 
 
 
 
-    @PostMapping("settings")
+    @PostMapping("/settings")
     public String result(@ModelAttribute("emailBox") EmailBox emailBox, Model model){
         List<EmailBox> emailBoxList;
         emailBoxList = iEmailBoxService.findAllEmailBox();
@@ -44,17 +42,18 @@ public class EmailBoxController {
         int size = emailBoxList.size();
         model.addAttribute("size", size);
         model.addAttribute("emailBoxList",emailBoxList);
-        return "/result";
+        return "email/result";
 
     }
     @GetMapping("edit/id")
     public String getEditForm(){
-        return "/edit";
+        return "email/edit";
     }
     @GetMapping("delete/{id}")
-    public String delete(@RequestParam("id") int id){
+    public String delete(@PathVariable(value = "id") Integer id,Model model){
+//        List<EmailBox> emailBoxList;
+//        emailBoxList = iEmailBoxService.findAllEmailBox();
+//        model.addAttribute("emailBoxList",emailBoxList);
         iEmailBoxService.delete(id);
-        return "/result";
-    }
-
-}
+        return "redirect:/email";
+    }}
