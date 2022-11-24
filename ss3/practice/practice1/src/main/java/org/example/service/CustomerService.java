@@ -1,30 +1,31 @@
 package org.example.service;
 
 import org.example.model.Customer;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import java.util.*;
 
 public class CustomerService implements ICustomerService {
-    private static final Map<Integer, Customer> customers;
-
-    static {
-
-        customers = new HashMap<>();
-        customers.put(1, new Customer(1, "John", "john@codegym.vn", "Hanoi"));
-        customers.put(2, new Customer(2, "Bill", "bill@codegym.vn", "Danang"));
-        customers.put(3, new Customer(3, "Alex", "alex@codegym.vn", "Saigon"));
-        customers.put(4, new Customer(4, "Adam", "adam@codegym.vn", "Beijin"));
-        customers.put(5, new Customer(5, "Sophia", "sophia@codegym.vn", "Miami"));
-        customers.put(6, new Customer(6, "Rose", "rose@codegym.vn", "Newyork"));
-    }
 
     @Override
     public List<Customer> findAll() {
-        return new ArrayList<>(customers.values());
+        Session session = null;
+        List<Customer> customerList = null;
+        try{
+            session = ConnectionUtil.sessionFactory.openSession();
+            customerList = session.createQuery("FROM Customer").getResultList();
+        }finally {
+            if(session != null){
+                session.close();
+            }
+        }
+        return customerList;
     }
+    Map<Integer,Customer> customers = new LinkedHashMap<>();
 
     @Override
     public void save(Customer customer) {
