@@ -25,8 +25,8 @@ public class ProductController {
         return "product/index";
     }
     @GetMapping("/create")
-    public String create(Model model){
-        model.addAttribute("product",new Product());
+    public String create(@ModelAttribute("product") Product product,  Model model){
+        model.addAttribute("product",product);
         return "product/create";
     }
     @PostMapping("/save")
@@ -46,7 +46,7 @@ public class ProductController {
         return "product/edit";
     }
     @PostMapping("/update")
-    public String update(Product product) {
+    public String update(@ModelAttribute("product") Product product) {
         iProductService.update( product);
         return "redirect:/product";
     }
