@@ -1,9 +1,10 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "blogs")
+@Table(name = "blog")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +13,8 @@ public class Blog {
     private String content;
     private String author;
     private String startDayWrite;
+    @ManyToOne
+    private Category category;
 
     public Blog() {
     }
@@ -62,5 +65,13 @@ public class Blog {
 
     public void setStartDayWrite(String startDayWrite) {
         this.startDayWrite = startDayWrite;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

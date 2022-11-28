@@ -2,12 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Blog;
 import com.example.demo.service.IBlogService;
+import com.example.demo.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -16,10 +17,13 @@ import java.util.Optional;
 public class BlogController {
     @Autowired
     private IBlogService blogService;
+    @Autowired
+    private ICategoryService categoryService;
 
     @GetMapping("/create-blog")
     public ModelAndView showCreateForm(){
         ModelAndView modelAndView = new ModelAndView("/blog/create");
+        modelAndView.addObject("categoryList",categoryService.findAll());
         modelAndView.addObject("blog", new Blog());
         return modelAndView;
     }
@@ -32,9 +36,9 @@ public class BlogController {
         return modelAndView;
     }
     @GetMapping("/blogs")
-    public ModelAndView listCustomers() {
+    public ModelAndView listBlogs(@RequestParam(defaultValue = "") String search, @PageableDefault(page = 0,size = 3) Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/blog/list");
-        modelAndView.addObject("blogs",blogService.findAll());
+        modelAndView.addObject("blogs",blogService.findByTitle( search, pageable));
         return modelAndView;
     }
     @GetMapping("/edit-blog/{id}")
@@ -42,6 +46,7 @@ public class BlogController {
         Optional<Blog> blog = blogService.findById(id);
         if (blog.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/blog/edit");
+            modelAndView.addObject("categoryList",categoryService.findAll());
             modelAndView.addObject("blog", blog.get());
             return modelAndView;
         } else {
@@ -59,10 +64,10 @@ public class BlogController {
     }
     @GetMapping("/delete-blog/{id}")
     public ModelAndView showDeleteForm(@PathVariable Integer id) {
-        Optional<Blog> customer = blogService.findById(id);
-        if (customer.isPresent()) {
+        Optional<Blog> blog = blogService.findById(id);
+        if (blog.isPresent()) {
             ModelAndView modelAndView = new ModelAndView("/blog/delete");
-            modelAndView.addObject("blog", customer.get());
+            modelAndView.addObject("blog", blog.get());
             return modelAndView;
 
         } else {
@@ -73,7 +78,7 @@ public class BlogController {
     @PostMapping("/delete-blog")
     public String deleteCustomer(@ModelAttribute("blog") Blog blog) {
         blogService.remove(blog.getId());
-        return "redirect:customers";
+        return "redirect:blogs";
     }
 
 }
