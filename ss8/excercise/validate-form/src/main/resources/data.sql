@@ -1,0 +1,1 @@
+insert into forms.user (age, email, first_name, last_name, phone_number) values (15,"vanngoc@gmail.com","Lại Văn","Ngọc","0393090815")

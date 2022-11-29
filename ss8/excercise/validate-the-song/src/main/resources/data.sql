@@ -1,0 +1,1 @@
+insert into songs.song(song_name,singer,category) values ("Xóa đi quá khứ","Như Hexi","Nhạc trẻ")
