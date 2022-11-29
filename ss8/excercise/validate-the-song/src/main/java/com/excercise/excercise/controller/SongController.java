@@ -8,8 +8,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class SongController {
@@ -29,7 +32,7 @@ public class SongController {
         return modelAndView;
     }
     @PostMapping("/create-song")
-    public ModelAndView saveUser(@Validated @ModelAttribute("Song") Song song, BindingResult bindingResult){
+    public ModelAndView saveUser(@Validated @ModelAttribute("song") Song song, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             ModelAndView modelAndView = new ModelAndView("/create");
             return modelAndView;
@@ -39,6 +42,31 @@ public class SongController {
         iSongService.save(song);
         modelAndView.addObject("songList", iSongService.findAll());
         modelAndView.addObject("massage","Create successfully");
+        return modelAndView;
+    }
+    @GetMapping("/edit-song/{id}")
+    public ModelAndView showEditForm(@PathVariable Integer id) {
+        Optional<Song> song = iSongService.findById(id);
+        if (song.isPresent()) {
+            ModelAndView modelAndView = new ModelAndView("/edit");
+            modelAndView.addObject("song",song.get());
+            return modelAndView;
+        }else {
+            return new ModelAndView("/error.404");
+        }
+    }
+
+    @PostMapping("/edit-song")
+    public ModelAndView updateSong(@Validated @ModelAttribute("song") Song song, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/edit");
+            return modelAndView;
+        }
+        iSongService.save(song);
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        modelAndView.addObject("songList",iSongService.findAll());
+
+        modelAndView.addObject("message", "Song updated successfully");
         return modelAndView;
     }
 }
