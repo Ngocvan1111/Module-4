@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit blog</title>
+    <title>Edit song</title>
 </head>
 <body>
-<h1>Edit blog</h1>
+<h1>Edit Song</h1>
 <p>
     <a href="/">Song list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/edit-song}" th:object="${song}" method="post">
+<form th:action="@{/edit-song}" th:object="${songDto}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>

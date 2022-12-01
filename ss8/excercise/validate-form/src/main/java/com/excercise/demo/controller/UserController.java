@@ -1,8 +1,10 @@
 package com.excercise.demo.controller;
 
 import com.excercise.demo.model.User;
+import com.excercise.demo.model.UserDto;
 import com.excercise.demo.service.IUserService;
 import com.sun.tracing.dtrace.Attributes;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,17 +28,19 @@ private IUserService iUserService;
 @GetMapping("/create-user")
 public ModelAndView showform(){
 ModelAndView modelAndView = new ModelAndView("/create");
-modelAndView.addObject("user",new User());
+modelAndView.addObject("userDto",new UserDto());
 return modelAndView;
 }
     @PostMapping("/create-user")
-public ModelAndView saveUser(@Validated @ModelAttribute("user") User user, BindingResult bindingResult){
+public ModelAndView saveUser(@Validated @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult){
       if(bindingResult.hasErrors()){
           ModelAndView modelAndView = new ModelAndView("/create");
           return modelAndView;
       }
 
 ModelAndView modelAndView = new ModelAndView("redirect:/");
+      User user = new User();
+        BeanUtils.copyProperties(userDto,user);
     iUserService.save(user);
         modelAndView.addObject("userList", iUserService.findAll());
 modelAndView.addObject("massage","Create successfully");
