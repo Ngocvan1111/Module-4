@@ -16,11 +16,19 @@
 <div style="width: 100vw;height: 100vh; background-image: linear-gradient(0deg, aqua, aquamarine 40%, yellowgreen)">
     <div class="row" style="min-height:50px; align-items: center " >
         <h1 style="color: blue; text-align: center"> BOOK LIST</h1>
+    </div> <div class="row" style="min-height:50px; align-items: center " >  </div>
+    <th:block th:if="${message}">
+ <div class="row" style="min-height:50px; align-items: center " >
+       <label><h3 style="color: yellow;text-align: center">Bạn đã mượn sách thành công, lưu lại mã code để trả sách: <label th:text="${message}"></label> </h3></label>
+ </div>
+    </th:block>
+    <div class="row" style="min-height:50px; align-items: center " >
+        <a th:href="@{/return}"><button type="button" class="btn btn-primary">Return Book</button></a>
     </div>
+
     <div class="row" style="margin: 15px">
         <table class="table table-success table-striped">
             <tr>
-
                 <th>STT</th>
                 <th>Book</th>
                 <th>Author</th>

@@ -20,4 +20,17 @@ public class BookManagerService implements IBookManagerService{
     public Optional<Contract> findById(Integer id) {
         return iBookManager.findById(id);
     }
+
+    @Override
+    public void save(Contract contract) {
+        iBookManager.save(contract);
+
+    }
+
+    @Override
+    public Contract findByCode(Integer code) {
+        return iBookManager.findByCode(code);
+    }
+
+
 }

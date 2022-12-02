@@ -16,15 +16,33 @@ public class Contract {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String timeBorrow;
-    private String customerName;
     private int code;
 
     @ManyToOne
     @JoinColumn(name = "id_book",referencedColumnName = "id")
     private Book book;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public int getCode() {
+        return code;
+    }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }

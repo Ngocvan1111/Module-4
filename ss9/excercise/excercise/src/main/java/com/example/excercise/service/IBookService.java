@@ -4,4 +4,6 @@ import com.example.excercise.model.Book;
 
 public interface IBookService extends IGeneralService<Book> {
     void save(Book book);
+    void saveReturn(Book book);
+    int randomCode();
 }

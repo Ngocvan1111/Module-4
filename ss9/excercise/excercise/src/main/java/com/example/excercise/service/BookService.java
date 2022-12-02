@@ -3,6 +3,7 @@ package com.example.excercise.service;
 import com.example.excercise.model.Book;
 import com.example.excercise.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +28,20 @@ public class BookService implements IBookService {
         book.setAmount(amount);
         System.out.println(book.getAmount());
         iBookRepository.save(book);
+    }
+
+    @Override
+    public void saveReturn(Book book) {
+        int amount = book.getAmount()+1;
+        book.setAmount(amount);
+        System.out.println(book.getAmount());
+        iBookRepository.save(book);
+
+    }
+
+    @Override
+    public int randomCode() {
+        int code = (int) Math.floor(((Math.random() * 899999) + 100000));
+        return code;
     }
 }
