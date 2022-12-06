@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Title</title>
+    <script>
+        $(document).ready(function () {
+            $("#hide").click(function () {
+                $("p").hide();
+                $("h1").hide();
+
+            });
+            $("#show").click(function () {
+                $("p").show();
+                $("h1").show();
+            });
+
+        });
+    </script>
+</head>
+<body>
+<p>If you click on the "Hide" button, I will disappear.</p>
+<h1 style="color: aqua">Đây là H1</h1>
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+</body>
+</html>
