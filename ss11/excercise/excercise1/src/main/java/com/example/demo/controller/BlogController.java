@@ -46,15 +46,6 @@ public class BlogController {
     return new ResponseEntity<>(blog.get(), HttpStatus.OK);
 
 }
-/// Xem danh sachs Category
-    @GetMapping("/categorys")
-    public ResponseEntity<List<Category>> showCategoryList(){
-    List<Category> categoryList = iCategoryService.findAll();
-    if(categoryList.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-    return new ResponseEntity<>(categoryList,HttpStatus.OK);
-    }
 // Xem danh sách các bài viết của 1 catagory.
     @GetMapping("/{id}/blogs")
     public ResponseEntity<List<Blog>> showBlogsInCategory(@PathVariable int id){
