@@ -2,10 +2,8 @@ package com.casestudy.demo.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -18,4 +16,6 @@ public class CustomerType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @OneToMany(mappedBy = "customerType",cascade = CascadeType.ALL)
+    private List<Customer> customers;
 }

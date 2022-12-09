@@ -2,11 +2,9 @@ package com.casestudy.demo.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -25,9 +23,20 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String address;
-    private int positionId;
-    private int educationDegreeId;
-    private int divisionId;
-    private String username;
+    @ManyToOne()
+    @JoinColumn(name = "position_id",referencedColumnName = "id")
+    private Position position;
+    @ManyToOne()
+    @JoinColumn(name = "education_degree_id",referencedColumnName = "id")
+    private EducationDegree educationDegree;
+    @ManyToOne()
+    @JoinColumn(name = "division_id",referencedColumnName = "id")
+    private Division division;
+
+     @OneToOne(cascade = CascadeType.ALL)
+     @JoinColumn(name = "username",referencedColumnName = "username")
+     private User user;
+     @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
+    private Set<Contract> contracts;
 
 }

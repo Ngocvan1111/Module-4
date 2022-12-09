@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head th:insert="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mg-0{
+            margin: 0;
+
+        }
+        table th td{
+            width: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div th:insert="/layout::header"></div>
+    <div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
+        <div class="col-md-2">
+            <a href="/create-customer" style="margin-left: 30px;margin-top: 20px" class="btn btn-primary">Add new Customer</a>
+        </div>
+        <div class="col-md-8">
+            <h1 style="color: #c21360;text-align: center">This is navbar</h1>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+    <div class="row mg-0" style="height: 70vh">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <table class="table table-success table-striped" style="height: 5px">
+                <tr>
+                    <th>Stt</th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Gender</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                <th:block th:each="customer,stt : ${customerList}">
+                    <tr>
+                        <td th:text="${stt.count}"></td>
+                        <td th:text="${customer.customerType.name}"></td>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.dateOfBirth}"></td>
+                        <td th:if="${customer.gender}== true">Male</td>
+                        <td th:if="${customer.gender}== false">Female</td>
+                        <td th:text="${customer.phoneNumber}"></td>
+                        <td th:text="${customer.email}"></td>
+                        <td><button type="button" class="btn btn-warning">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger">Danger</button></td>
+                    </tr>
+                </th:block>
+
+            </table>
+            <a th:href="@{/customer(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">Previous</a>
+            <span th:text="${customerList.number + 1}+'/'+${customerList.totalPages}"></span>
+            <a th:href="@{/customer(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">Next</a>
+
+        </div>
+        <div class="col-md-1"></div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer th:replace="/layout::footer"></footer>
+
+</div>
+
+</body>
+</html>

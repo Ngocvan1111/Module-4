@@ -3,6 +3,7 @@ package com.casestudy.demo.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -14,6 +15,8 @@ public class EducationDegree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "education_degree_name")
     private String name;
+    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
+    private Set<Employee> employees;
+
 }
