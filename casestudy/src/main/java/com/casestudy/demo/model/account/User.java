@@ -1,5 +1,7 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.account;
 
+import com.casestudy.demo.model.account.Role;
+import com.casestudy.demo.model.employee.Employee;
 import lombok.*;
 
 import javax.persistence.*;

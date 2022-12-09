@@ -1,14 +1,11 @@
 package com.casestudy.demo.dto;
 
-import com.casestudy.demo.model.CustomerType;
+import com.casestudy.demo.model.customer.CustomerType;
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Builder
 @NoArgsConstructor

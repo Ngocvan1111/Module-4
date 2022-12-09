@@ -1,5 +1,6 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.facility;
 
+import com.casestudy.demo.model.facility.Facility;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,15 +8,15 @@ import java.util.List;
 
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class FacilityType {
+@AllArgsConstructor
+@NoArgsConstructor
+public class RentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "facilityType",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rentType",cascade = CascadeType.ALL)
     private List<Facility> facilities;
 }

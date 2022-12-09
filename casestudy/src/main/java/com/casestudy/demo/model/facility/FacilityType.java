@@ -1,21 +1,22 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.facility;
 
+import com.casestudy.demo.model.facility.Facility;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Getter
 @Setter
-public class CustomerType {
+public class FacilityType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "customerType",cascade = CascadeType.ALL)
-    private List<Customer> customers;
+    @OneToMany(mappedBy = "facilityType",cascade = CascadeType.ALL)
+    private List<Facility> facilities;
 }

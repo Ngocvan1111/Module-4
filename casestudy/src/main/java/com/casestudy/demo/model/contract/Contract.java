@@ -1,6 +1,9 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.contract;
 
 
+import com.casestudy.demo.model.customer.Customer;
+import com.casestudy.demo.model.employee.Employee;
+import com.casestudy.demo.model.facility.Facility;
 import lombok.*;
 
 import javax.persistence.*;

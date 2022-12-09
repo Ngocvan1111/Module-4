@@ -1,9 +1,6 @@
 package com.casestudy.demo.dto;
 
-import com.casestudy.demo.model.*;
-
-import java.util.Date;
-import java.util.List;
+import com.casestudy.demo.model.customer.CustomerType;
 
 public interface ICustomerDto {
 

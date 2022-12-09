@@ -1,4 +1,4 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.employee;
 
 import lombok.*;
 
@@ -7,15 +7,16 @@ import java.util.Set;
 
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class Position {
+public class EducationDegree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "position",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
     private Set<Employee> employees;
+
 }

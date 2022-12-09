@@ -1,8 +1,6 @@
 package com.casestudy.demo.repository;
 
-import com.casestudy.demo.dto.CustomerDto;
-import com.casestudy.demo.dto.ICustomerDto;
-import com.casestudy.demo.model.Customer;
+import com.casestudy.demo.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

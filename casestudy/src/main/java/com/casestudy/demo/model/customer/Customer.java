@@ -1,9 +1,9 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.customer;
 
+import com.casestudy.demo.model.contract.Contract;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity

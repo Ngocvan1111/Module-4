@@ -1,4 +1,4 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.employee;
 
 import lombok.*;
 

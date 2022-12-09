@@ -1,5 +1,6 @@
-package com.casestudy.demo.model;
+package com.casestudy.demo.model.employee;
 
+import com.casestudy.demo.model.employee.Employee;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,16 +8,15 @@ import java.util.Set;
 
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class EducationDegree {
+public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position",cascade = CascadeType.ALL)
     private Set<Employee> employees;
-
 }
