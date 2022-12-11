@@ -4,18 +4,129 @@
 <head th:insert="/layout::head">
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 <div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
     <div class="col-md-2">
-        <a href="/customer" style="margin-left: 30px;margin-top: 20px" class="button btn-danger">Back to Customer List</a>
+        <a href="/customer" style="margin-left: 30px;margin-top: 20px" class="button btn-danger">Back to Customer
+            List</a>
     </div>
     <div class="col-md-8">
         <h1 style="color: #c21360;text-align: center">This is navbar</h1>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+
+    </div>
+
 
 </div>
+<div class="row mg-0" style="height: 70vh ">
+    <div class="col-md-5"></div>
+    <div class="col-md-3" style=" background-image: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE)">
+        <form th:action="@{/customer/create}" th:object="${customerDto}" method="post"
+              class="align-items-center; align-content-center">
+            <div class="row my-3">
+                <h2 style="text-align: center;color: black">CREATE NEW CUSTOMER</h2>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Name</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{name}"/></label>
+                    <p th:errors="*{name}" class="text-danger"></p>
 
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Birthday </label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="date" th:field="*{dateOfBirth}"/></label>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Gender</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="radio" th:field="*{gender}" th:value="true"/></label>
+                    <label th:text="Male"></label>
+                    <label><input type="radio" th:field="*{gender}" th:value="false"></label>
+                    <label th:text="Female"></label>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>idCard</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{idCard}"/></label>
+                    <p th:errors="*{idCard}" class="text-danger"></p>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Phone Number</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{phoneNumber}"/></label>
+                    <p th:errors="*{phoneNumber}" class="text-danger"></p>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{email}"/></label>
+                    <p th:errors="*{email}" class="text-danger"></p>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Address</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{address}"/></label>
+                    <p th:errors="*{address}" class="text-danger"></p>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Customer Type</label>
+                </div>
+                <div class="col-md-6">
+                    <select th:field="*{customerType}">
+                        <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
+                                th:text="${customerType.name}">
+
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <label style="text-align: center" ><input class="text-primary" type="submit" value="Create customer"/>
+                </label>
+
+            </div>
+        </form>
+
+</div>
+</div>
+
+
+</div>
 </body>
 </html>
