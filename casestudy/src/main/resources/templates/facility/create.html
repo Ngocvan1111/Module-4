@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $("#facilityType").change(function () {
+            let value = $('#facilityType').val();
+            if(value == 1){
+                $("#id-villa-house-des").show();
+                $("#id-villa-house-number-floors").show();
+                $("#id-villa-house-standard-room").show();
+                $("#id-villa-pool-area").show();
+                $("#id-room-facility-free").hide();
+            }
+            if(value == 3){
+                $("#id-room-facility-free").show();
+                $("#id-villa-house-des").hide();
+                $("#id-villa-house-number-floors").hide();
+                $("#id-villa-house-standard-room").hide();
+                $("#id-villa-pool-area").hide();
+            }
+            if(value == 2){
+                $("#id-villa-house-des").show();
+                $("#id-villa-house-number-floors").show();
+                $("#id-villa-house-standard-room").show();
+                $("#id-villa-pool-area").hide();
+                $("#id-room-facility-free").hide();
+
+            }
+        });
+    });
+</script>
+
+
+<div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
+    <div class="col-md-2">
+        <a href="/facility" style="margin-left: 30px;margin-top: 20px" class="button btn-danger">Back to Facility
+            List</a>
+    </div>
+    <div class="col-md-8">
+        <h1 style="color: #c21360;text-align: center">This is navbar</h1>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+
+
+</div>
+<div class="row mg-0" style="height: 70vh ">
+    <div class="col-md-5"></div>
+    <div class="col-md-3" style=" background-image: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE)">
+        <form th:action="@{/facility/create}" th:object="${facilityDto}" method="post"
+              class="align-items-center; align-content-center">
+            <div class="row my-3">
+                <h2 style="text-align: center;color: black">CREATE NEW FACILITY</h2>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Facility Type</label>
+                </div>
+                <div class="col-md-6">
+                    <select th:field="*{facilityType}" id="facilityType">
+                        <option th:each="facilityType:${facilityTypeList}" th:value="${facilityType.id}"
+                                th:text="${facilityType.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Service Name </label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{name}"/></label>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Area</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{area}"/></label>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Cost</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{cost}"/></label>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Max people</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{maxPeople}"/></label>
+
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-md-6">
+                    <label>Rent type</label>
+                </div>
+                <div class="col-md-6">
+                    <select th:field="*{rentType}">
+                        <option th:each="rentType:${rentTypeList}" th:value="${rentType.id}"
+                                th:text="${rentType.name}">
+                        </option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row my-2" id="id-villa-house-standard-room">
+                <div class="col-md-6" >
+                    <label>Standard room</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{standardRoom}"/></label>
+
+
+                </div>
+            </div>
+            <div class="row my-2" id="id-villa-house-des">
+                <div class="col-md-6">
+                    <label>Description other convenience</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{descriptionOtherConvenience}"/></label>
+                </div>
+            </div>
+            <div class="row my-2" id="id-villa-pool-area">
+                <div class="col-md-6">
+                    <label>Pool area</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{poolArea}"/></label>
+                </div>
+            </div>
+            <div class="row my-2" id="id-villa-house-number-floors">
+                <div class="col-md-6">
+                    <label>Number floors</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{numberOfFloors}"/></label>
+                </div>
+            </div>
+            <div class="row my-2" id="id-room-facility-free" >
+                <div class="col-md-6">
+                    <label>Facility free</label>
+                </div>
+                <div class="col-md-6">
+                    <label><input type="text" th:field="*{facilityFree}"/></label>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <label style="text-align: center" ><input class="text-primary" type="submit" value="Create Facility"/>
+                </label>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

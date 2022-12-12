@@ -2,9 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<html lang="en">-->
 <head th:insert="/layout::head">
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <style>
         *{
             box-sizing: border-box;
@@ -26,6 +23,133 @@
 
 </head>
 <body>
+
+
+<div class="modal fade" id="modalEdit" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrors == true}" >
+        $(document).ready(function () {
+            $("#modalEdit").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel1">EDIT MODAL</h1>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/customer/edit}" th:object="${editCustomerDto}" method="post">
+                <div class="modal-body">
+                    <div class="row my-3">
+                        <input type="text" th:field="*{id}" id="customerId" hidden>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{name}" id="customerName"/></label>
+                            <p th:errors="*{name}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Birthday </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                        </div>
+                        <div class="col-md-6">
+
+                            <!--                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>-->
+                            <!--                                <label th:text="Male"></label>-->
+
+                            <!--                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>-->
+                            <!--                                <label th:text="Female"></label>-->
+
+
+                            <select id="customerGender" th:field="*{gender}">
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                            </select>
+
+
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>idCard</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>
+                            <p th:errors="*{idCard}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Phone Number</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>
+                            <p th:errors="*{phoneNumber}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>
+                            <p th:errors="*{email}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>
+                            <p th:errors="*{address}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Customer Type</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:field="*{customerType}" id="customerType">
+                                <option th:each="customerType1:${customerTypeList}" th:value="${customerType1.id}"
+                                        th:text="${customerType1.name}">
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">CLOSE
+                    </button>
+                    <button type="submit" class="btn btn-primary">EDIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <div id="main">
     <div th:insert="/layout::header"></div>
     <div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
@@ -33,7 +157,16 @@
             <a href="/customer/create" style="margin-left: 30px;margin-top: 20px" class="btn btn-primary">Add new Customer</a>
         </div>
         <div class="col-md-8">
-            <h1 style="color: #c21360;text-align: center">This is navbar</h1>
+            <nav class="navbar navbar-expand-lg">
+                <div class="navbar-collapse">
+                    <ul id="menu-furama-vi" class="menu navbar-nav w-100 js-main-menu" style="margin: 0 20px">
+                        <li id="nav-menu-item-5007" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page" ><a href="/view/main.jsp" class="nav-link main-menu-link">HOME</a></li>
+                        <li id="nav-menu-item-5008" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/employees" class="nav-link main-menu-link">EMPLOYEE</a></li>
+                        <li id="nav-menu-item-5009" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/customer" class="nav-link main-menu-link">CUSTOMER</a></li>
+                        <li id="nav-menu-item-5010" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/service" class="nav-link main-menu-link">SERVICE</a></li>
+                        <li id="nav-menu-item-5011" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/contract" class="nav-link main-menu-link">CONTRACT</a></li>
+                    </ul>  </div>
+            </nav>
         </div>
         <div class="col-md-2"></div>
 
@@ -95,7 +228,7 @@
                         <td> <button   type="button" class="btn btn-warning"
                                        data-bs-toggle="modal"
                                        data-bs-target="#modalEdit"
-                                       th:attr="onclick=|editCustomer('${customer.id}','${customer.name}','${customer.dateOfBirth}','${customer.gender}','${customer.idCard}','${customer.phoneNumber}','${customer.email}','${customer.address}','${customer.customerType}');|">
+                                       th:attr="onclick=|editCustomer('${customer.id}','${customer.name}','${customer.dateOfBirth}','${customer.gender}','${customer.idCard}','${customer.phoneNumber}','${customer.email}','${customer.address}','${customer.customerType.id}');|">
 
                             Edit
                         </button></td>
@@ -151,136 +284,12 @@
 </div>
 
 
-
-<div class="modal fade" id="modalEdit" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel1">EDIT MODAL</h1>
-                <button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form th:action="@{/customer/edit}" th:object="${editCustomerDto}" method="post">
-                <div class="modal-body">
-                    <div class="row my-3">
-                        <input type="text" id="customerId" hidden>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Name</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{name}" id="customerName"/></label>
-                            <p th:errors="*{name}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Birthday </label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Gender</label>
-                        </div>
-                        <div class="col-md-6">
-<!--                            <th:block th:if="customerGender == true">-->
-<!--                                <label><input type="radio" th:field="*{gender}" th:value="true" checked/></label>-->
-<!--                                <label th:text="Male"></label>-->
-
-<!--                            </th:block>-->
-<!--                            <th:block th:if="customerGender == false">-->
-<!--                                <label><input type="radio" th:field="*{gender}" th:value="false" checked/></label>-->
-<!--                                <label th:text="Female"></label>-->
-
-<!--                            </th:block>-->
-                            <label for="customerGender" class="form-label">Gender:</label>
-                            <select id="customerGender" th:field="*{gender}">
-                                <option value="true">Male</option>
-                                <option value="false">Female</option>
-                            </select>
-
-
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>idCard</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>
-                            <p th:errors="*{idCard}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Phone Number</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>
-                            <p th:errors="*{phoneNumber}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>
-                            <p th:errors="*{email}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Address</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>
-                            <p th:errors="*{address}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Customer Type</label>
-                        </div>
-                        <div class="col-md-6">
-                            <select th:field="*{customerType}" id="customerType">
-                                <option th:each="customerType:${customerTypeList}" th:value="${customerType.id}"
-                                        th:text="${customerType.name}">
-
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">NOT SURE
-                    </button>
-                    <button type="submit" class="btn btn-primary">SURE</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
 <script>
     function editCustomer(id, name, dateOfBirth, gender, idCard, phoneNumber, email, address, customerType) {
         document.getElementById("customerId").value = id;
         document.getElementById("customerName").value = name;
         document.getElementById("customerBirthday").value = dateOfBirth;
-        document.getElementById("customerGender").value = gender;
+        document.getElementsByClassName("customerGender").value = gender;
         document.getElementById("customerIdCard").value = idCard;
         document.getElementById("customerPhoneNumber").value = phoneNumber;
         document.getElementById("customerEmail").value = email;

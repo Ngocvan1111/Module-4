@@ -1,4 +1,4 @@
-package com.casestudy.demo.repository;
+package com.casestudy.demo.repository.customer;
 
 import com.casestudy.demo.model.customer.CustomerType;
 import org.springframework.data.jpa.repository.JpaRepository;

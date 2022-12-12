@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head th:insert="/layout::head">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .mg-0{
+            margin: 0;
+
+        }
+        table th td{
+            width: 5px;
+        }
+        .center-items{
+            margin: auto;
+            align-items: center;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+
+<!--<div class="modal fade" id="modalEdit" tabindex="-1"-->
+<!--     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <script th:inline="javascript" th:if="${hasErrors == true}" >-->
+<!--        $(document).ready(function () {-->
+<!--            $("#modalEdit").modal("show");-->
+<!--        });-->
+<!--    </script>-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h1 class="modal-title fs-5" id="exampleModalLabel1">EDIT MODAL</h1>-->
+<!--                <button type="button" class="btn-close"-->
+<!--                        data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--            </div>-->
+<!--            <form th:action="@{/customer/edit}" th:object="${editCustomerDto}" method="post">-->
+<!--                <div class="modal-body">-->
+<!--                    <div class="row my-3">-->
+<!--                        <input type="text" th:field="*{id}" id="customerId" hidden>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Name</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="text" th:field="*{name}" id="customerName"/></label>-->
+<!--                            <p th:errors="*{name}" class="text-danger"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Birthday </label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Gender</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+
+<!--                            &lt;!&ndash;                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <label th:text="Male"></label>&ndash;&gt;-->
+
+<!--                            &lt;!&ndash;                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <label th:text="Female"></label>&ndash;&gt;-->
+
+
+<!--                            <select id="customerGender" th:field="*{gender}">-->
+<!--                                <option value="true">Male</option>-->
+<!--                                <option value="false">Female</option>-->
+<!--                            </select>-->
+
+
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>idCard</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>-->
+<!--                            <p th:errors="*{idCard}" class="text-danger"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Phone Number</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>-->
+<!--                            <p th:errors="*{phoneNumber}" class="text-danger"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Email</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>-->
+<!--                            <p th:errors="*{email}" class="text-danger"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Address</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>-->
+<!--                            <p th:errors="*{address}" class="text-danger"></p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="row my-2">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <label>Customer Type</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <select th:field="*{customerType}" id="customerType">-->
+<!--                                <option th:each="customerType1:${customerTypeList}" th:value="${customerType1.id}"-->
+<!--                                        th:text="${customerType1.name}">-->
+
+<!--                                </option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary"-->
+<!--                            data-bs-dismiss="modal">CLOSE-->
+<!--                    </button>-->
+<!--                    <button type="submit" class="btn btn-primary">EDIT</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div id="main">
+    <div th:insert="/layout::header"></div>
+    <div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
+        <div class="col-md-2">
+            <a href="/facility/create" style="margin-left: 30px;margin-top: 20px" class="btn btn-primary">Add new Facility</a>
+        </div>
+        <div class="col-md-8">
+            <h1 style="color: #c21360;text-align: center">This is navbar</h1>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+    <div class="row">
+        <th:block th:if="${message}" >
+            <h3 th:text="${message}" style="text-align: center;color: blue"></h3>
+        </th:block>
+    </div>
+    <div class="row" style="height: 50px;width: 100%; margin-bottom: 5px;margin-right: 12px">
+        <div class="col-md-3" style="display: flex">
+            <form class="d-flex" th:action="@{/facility}" style="margin: auto;margin-left: 40px">
+                <input class="form-control me-2" type="text" placeholder="Name" name="name" aria-label="Search">
+                <select name="facilityTypeId">
+                    <option value="-1">Select option</option>
+                    <option th:each="facilityType: ${facilityTypeList}"
+                            th:selected="${facilityTypeId == facilityType.id}" th:value="${facilityType.id}"
+                            th:text="${facilityType.name}"></option>
+                </select>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-md-7">
+            <h1 style="text-align: center;color: #ee00ff"> FACILITY LIST</h1>
+        </div>
+        <div class="col-md-2 center-items">
+        </div>
+    </div>
+    <div class="row mg-0" style="height: 70vh">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <table class="table table-success table-striped" style="height: 5px">
+                <tr>
+                    <th>Stt</th>
+                    <th>
+                        Facility name
+                    </th>
+                    <th>Area</th>
+                    <th>Max people</th>
+                    <th>Rent type</th>
+                    <th>Facility free</th>
+                    <th>Standard room</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                <th:block th:each="facility,stt : ${facilityList}">
+                    <tr>
+                        <td th:text="${stt.count}"></td>
+                        <td th:text="${facility.name}"></td>
+                        <td th:text="${facility.area}"></td>
+                        <td th:text="${facility.maxPeople}"></td>
+                        <td th:text="${facility.rentType.name}"></td>
+                        <td th:text="${facility.facilityFree}"></td>
+                        <td th:text="${facility.standardRoom}"></td>
+<!--                        <td> <button   type="button" class="btn btn-warning"-->
+<!--                                       data-bs-toggle="modal"-->
+<!--                                       data-bs-target="#modalEdit"-->
+<!--                                       th:attr="onclick=|editFacility('${customer.id}','${customer.name}','${customer.dateOfBirth}','${customer.gender}','${customer.idCard}','${customer.phoneNumber}','${customer.email}','${customer.address}','${customer.customerType.id}');|">-->
+
+<!--                            Edit-->
+<!--                        </button></td>-->
+                        <td>edit</td>
+                        <td> <button   type="button" class="btn btn-danger"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#modalDelete"
+                                       th:attr="onclick=|deleteFacility('${facility.id}','${facility.name}')|">
+
+                            Delete
+                        </button></td>
+                    </tr>
+                </th:block>
+
+            </table>
+            <a th:href="@{/facility(page=${facilityList.number - 1})}" th:if="${facilityList.hasPrevious()}">Previous</a>
+            <span th:text="${facilityList.number + 1}+'/'+${facilityList.totalPages}"></span>
+            <a th:href="@{/facility(page=${facilityList.number + 1})}" th:if="${facilityList.hasNext()}">Next</a>
+
+        </div>
+        <div class="col-md-1"></div>
+
+
+    </div>
+</div>
+
+
+
+    <footer th:replace="/layout::footer"></footer>
+
+<!--/// Delete modal ///-->
+
+<div class="modal fade" id="modalDelete" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">WARNING</h1>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/facility/delete}" method="post">
+                <div class="modal-body">
+                    <div class="text-danger" id="deleteName" ></div>
+                    <input hidden type="text" name="deleteId" id="deleteId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">NOT SURE
+                    </button>
+                    <button type="submit" class="btn btn-primary">SURE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--/// Edit modal ///-->
+
+
+
+<div class="modal fade" id="modalEdit" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <script th:inline="javascript" th:if="${hasErrors == true}" >
+        $(document).ready(function () {
+            $("#modalEdit").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel1">EDIT MODAL</h1>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/facility/edit}" th:object="${editFacilityDto}" method="post">
+                <div class="modal-body">
+                    <div class="row my-3">
+                        <input type="text" th:field="*{id}" id="customerId" hidden>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{name}" id="customerName"/></label>
+                            <p th:errors="*{name}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Birthday </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                        </div>
+                        <div class="col-md-6">
+
+                            <!--                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>-->
+                            <!--                                <label th:text="Male"></label>-->
+
+                            <!--                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>-->
+                            <!--                                <label th:text="Female"></label>-->
+
+
+                            <select id="customerGender" th:field="*{gender}">
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                            </select>
+
+
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>idCard</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>
+                            <p th:errors="*{idCard}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Phone Number</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>
+                            <p th:errors="*{phoneNumber}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>
+                            <p th:errors="*{email}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>
+                            <p th:errors="*{address}" class="text-danger"></p>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Customer Type</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:field="*{customerType}" id="customerType">
+                                <option th:each="customerType1:${customerTypeList}" th:value="${customerType1.id}"
+                                        th:text="${customerType1.name}">
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">CLOSE
+                    </button>
+                    <button type="submit" class="btn btn-primary">EDIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    function editCustomer(id, name, dateOfBirth, gender, idCard, phoneNumber, email, address, customerType) {
+        document.getElementById("customerId").value = id;
+        document.getElementById("customerName").value = name;
+        document.getElementById("customerBirthday").value = dateOfBirth;
+        document.getElementsByClassName("customerGender").value = gender;
+        document.getElementById("customerIdCard").value = idCard;
+        document.getElementById("customerPhoneNumber").value = phoneNumber;
+        document.getElementById("customerEmail").value = email;
+        document.getElementById("customerAddress").value = address;
+        document.getElementById("customerType").value = customerType;
+    }
+
+    // function editCustomer( name) {
+    //     // document.getElementById("customerId").value = id;
+    //     document.getElementById("customerName").innerHTML = "test abc" + name;
+    // }
+
+
+
+    function deleteFacility(id, name) {
+        document.getElementById("deleteName").innerHTML = "Do you sure to remove this facility ?" +'<br>'  +name;
+        document.getElementById("deleteId").value = id;
+
+    }
+
+</script>
+
+</body>
+</html>

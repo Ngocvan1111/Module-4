@@ -3,8 +3,8 @@ package com.casestudy.demo.controller;
 import com.casestudy.demo.dto.CustomerDto;
 import com.casestudy.demo.model.customer.Customer;
 import com.casestudy.demo.model.customer.CustomerType;
-import com.casestudy.demo.service.ICustomerService;
-import com.casestudy.demo.service.ICustomerTypeService;
+import com.casestudy.demo.service.customer.ICustomerService;
+import com.casestudy.demo.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -41,7 +41,7 @@ public class CustomerController {
     public ModelAndView showCreateCustomerForm(){
         ModelAndView modelAndView = new ModelAndView("customer/create");
         modelAndView.addObject("customerTypeList",iCustomerTypeService.findAll());
-        modelAndView.addObject("customerDto",new CustomerDto());
+        modelAndView.addObject("customerDto",CustomerDto.builder().build());
         return modelAndView;
     }
     @PostMapping("/create")
@@ -62,6 +62,23 @@ public class CustomerController {
     @PostMapping("delete")
     public String deleteCustomer(@RequestParam("deleteId") Long deleteId) {
         iCustomerService.remove(deleteId);
+        return "redirect:/customer";
+    }
+    @PostMapping("edit")
+    public String editCustomer(@Validated @ModelAttribute("editCustomerDto") CustomerDto editCustomerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model,@PageableDefault(page = 0,size = 3) Pageable pageable){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("customerTypeList",iCustomerTypeService.findAll());
+            model.addAttribute("hasErrors",true);
+//            model.addAttribute("customerDto",new CustomerDto());
+            model.addAttribute("customerList",iCustomerService.findAll(pageable));
+            model.addAttribute("editCustomerDto",editCustomerDto);
+            return "customer/list";
+
+        }
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(editCustomerDto,customer);
+        iCustomerService.save(customer);
+        redirectAttributes.addFlashAttribute("message","new Customer edited successfully");
         return "redirect:/customer";
     }
 }
