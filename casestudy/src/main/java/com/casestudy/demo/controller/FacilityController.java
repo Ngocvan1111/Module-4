@@ -34,7 +34,7 @@ public class FacilityController {
 
 
     @GetMapping("")
-private String crateFacility(@PageableDefault(page = 0, size = 3) Pageable pageable, FacilityDto facilityDto, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "-1") int facilityTypeId, Model model){
+private String crateFacility(@PageableDefault(page = 0, size = 3) Pageable pageable, FacilityDto editFacilityDto, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "-1") int facilityTypeId, Model model){
         if(facilityTypeId == -1){
             model.addAttribute("facilityList",iFacilityService.findByNameContaining(name,pageable));
         }
@@ -46,6 +46,7 @@ private String crateFacility(@PageableDefault(page = 0, size = 3) Pageable pagea
         model.addAttribute("rentTypeList",iRentTypeService.findAll());
         model.addAttribute("name",name);
         model.addAttribute("facilityTypeId",facilityTypeId);
+        model.addAttribute("editFacilityDto",editFacilityDto);
 
     return "facility/list";
     }
@@ -81,10 +82,12 @@ private String crateFacility(@PageableDefault(page = 0, size = 3) Pageable pagea
     public String editCustomer(@Validated @ModelAttribute("editFacilityDto") FacilityDto editFacilityDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model,@PageableDefault(page = 0,size = 3) Pageable pageable){
         if(bindingResult.hasErrors()){
             model.addAttribute("facilityTypeList",iFacilityTypeService.findAll());
+            model.addAttribute("rentTypeList",iRentTypeService.findAll());
             model.addAttribute("hasErrors",true);
-//            model.addAttribute("customerDto",new CustomerDto());
+            model.addAttribute("facilityTypeEdit",editFacilityDto.getFacilityType().getId());
             model.addAttribute("facilityList",iFacilityService.findAll(pageable));
             model.addAttribute("editFacilityDto",editFacilityDto);
+            model.addAttribute("facilityTypeName",editFacilityDto.getFacilityType().getName());
             return "facility/list";
 
         }

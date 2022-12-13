@@ -69,7 +69,6 @@ public class CustomerController {
         if(bindingResult.hasErrors()){
             model.addAttribute("customerTypeList",iCustomerTypeService.findAll());
             model.addAttribute("hasErrors",true);
-//            model.addAttribute("customerDto",new CustomerDto());
             model.addAttribute("customerList",iCustomerService.findAll(pageable));
             model.addAttribute("editCustomerDto",editCustomerDto);
             return "customer/list";

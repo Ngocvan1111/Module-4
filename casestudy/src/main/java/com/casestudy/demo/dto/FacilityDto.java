@@ -6,6 +6,9 @@ import com.casestudy.demo.model.facility.RentType;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Builder
@@ -15,6 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 public class FacilityDto {
     private Long id;
+    @NotEmpty(message = "Name is not empty")
+    @NotBlank(message = "Name is not blank")
+//    @Pattern(regexp = "^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$", message = "Name must match Format ")
     private String name;
     private int area;
     private Double cost;

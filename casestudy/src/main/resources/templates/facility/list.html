@@ -23,131 +23,36 @@
 
 </head>
 <body>
+<!--<script th:inline="javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $("#check").click(function () {-->
+<!--            let value = $('#facilityTypeId').val();-->
+<!--            if(value == 1){-->
+<!--                $("#id-villa-house-des").show();-->
+<!--                $("#id-villa-house-number-floors").show();-->
+<!--                $("#id-villa-house-standard-room").show();-->
+<!--                $("#id-villa-pool-area").show();-->
+<!--                $("#id-room-facility-free").hide();-->
+<!--            }-->
+<!--            if(value == 3){-->
+<!--                $("#id-room-facility-free").show();-->
+<!--                $("#id-villa-house-des").hide();-->
+<!--                $("#id-villa-house-number-floors").hide();-->
+<!--                $("#id-villa-house-standard-room").hide();-->
+<!--                $("#id-villa-pool-area").hide();-->
+<!--            }-->
+<!--            if(value == 2){-->
+<!--                $("#id-villa-house-des").show();-->
+<!--                $("#id-villa-house-number-floors").show();-->
+<!--                $("#id-villa-house-standard-room").show();-->
+<!--                $("#id-villa-pool-area").hide();-->
+<!--                $("#id-room-facility-free").hide();-->
 
-
-<!--<div class="modal fade" id="modalEdit" tabindex="-1"-->
-<!--     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <script th:inline="javascript" th:if="${hasErrors == true}" >-->
-<!--        $(document).ready(function () {-->
-<!--            $("#modalEdit").modal("show");-->
+<!--            }-->
 <!--        });-->
-<!--    </script>-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--                <h1 class="modal-title fs-5" id="exampleModalLabel1">EDIT MODAL</h1>-->
-<!--                <button type="button" class="btn-close"-->
-<!--                        data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <form th:action="@{/customer/edit}" th:object="${editCustomerDto}" method="post">-->
-<!--                <div class="modal-body">-->
-<!--                    <div class="row my-3">-->
-<!--                        <input type="text" th:field="*{id}" id="customerId" hidden>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Name</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="text" th:field="*{name}" id="customerName"/></label>-->
-<!--                            <p th:errors="*{name}" class="text-danger"></p>-->
+<!--    });-->
+<!--</script>-->
 
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Birthday </label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Gender</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-
-<!--                            &lt;!&ndash;                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <label th:text="Male"></label>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash;                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <label th:text="Female"></label>&ndash;&gt;-->
-
-
-<!--                            <select id="customerGender" th:field="*{gender}">-->
-<!--                                <option value="true">Male</option>-->
-<!--                                <option value="false">Female</option>-->
-<!--                            </select>-->
-
-
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>idCard</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>-->
-<!--                            <p th:errors="*{idCard}" class="text-danger"></p>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Phone Number</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>-->
-<!--                            <p th:errors="*{phoneNumber}" class="text-danger"></p>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Email</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>-->
-<!--                            <p th:errors="*{email}" class="text-danger"></p>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Address</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>-->
-<!--                            <p th:errors="*{address}" class="text-danger"></p>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="row my-2">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <label>Customer Type</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <select th:field="*{customerType}" id="customerType">-->
-<!--                                <option th:each="customerType1:${customerTypeList}" th:value="${customerType1.id}"-->
-<!--                                        th:text="${customerType1.name}">-->
-
-<!--                                </option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="button" class="btn btn-secondary"-->
-<!--                            data-bs-dismiss="modal">CLOSE-->
-<!--                    </button>-->
-<!--                    <button type="submit" class="btn btn-primary">EDIT</button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 
 <div id="main">
@@ -213,14 +118,19 @@
                         <td th:text="${facility.rentType.name}"></td>
                         <td th:text="${facility.facilityFree}"></td>
                         <td th:text="${facility.standardRoom}"></td>
-<!--                        <td> <button   type="button" class="btn btn-warning"-->
-<!--                                       data-bs-toggle="modal"-->
-<!--                                       data-bs-target="#modalEdit"-->
-<!--                                       th:attr="onclick=|editFacility('${customer.id}','${customer.name}','${customer.dateOfBirth}','${customer.gender}','${customer.idCard}','${customer.phoneNumber}','${customer.email}','${customer.address}','${customer.customerType.id}');|">-->
+                        <td> <button   type="button" class="btn btn-warning"
+                                       data-bs-toggle="modal"
+                                       id="check"
+                                       data-bs-target="#modalEdit"
+                                       th:attr="onclick=|editFacility('${facility.id}','${facility.name}','${facility.area}','${facility.cost}','${facility.maxPeople}','${facility.rentType.id}','${facility.facilityType.id}','${facility.facilityType.name}','${facility.standardRoom}','${facility.descriptionOtherConvenience}','${facility.poolArea}','${facility.numberOfFloors}','${facility.facilityFree}');|">
 
-<!--                            Edit-->
-<!--                        </button></td>-->
-                        <td>edit</td>
+                            Edit
+                        </button></td>
+
+
+
+
+<!--                        <td>edit</td>-->
                         <td> <button   type="button" class="btn btn-danger"
                                        data-bs-toggle="modal"
                                        data-bs-target="#modalDelete"
@@ -278,10 +188,12 @@
 
 
 
+
 <div class="modal fade" id="modalEdit" tabindex="-1"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <script th:inline="javascript" th:if="${hasErrors == true}" >
         $(document).ready(function () {
+            showUpEditModal(/*[[${facilityTypeEdit}]]*/); //giữ định dạng modal lúc edit sai
             $("#modalEdit").modal("show");
         });
     </script>
@@ -295,133 +207,179 @@
             <form th:action="@{/facility/edit}" th:object="${editFacilityDto}" method="post">
                 <div class="modal-body">
                     <div class="row my-3">
-                        <input type="text" th:field="*{id}" id="customerId" hidden>
+                        <input type="text" th:field="*{id}" id="facilityId" hidden>
                     </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Name</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{name}" id="customerName"/></label>
-                            <p th:errors="*{name}" class="text-danger"></p>
-
-                        </div>
+                    <div class="row my-3" id="facilityTypeName">
+                        <h1 style='text-align: center;color: blue' th:text="${facilityTypeName}"></h1>
                     </div>
-                    <div class="row my-2">
+                    <div class="row my-2" hidden>
                         <div class="col-md-6">
-                            <label>Birthday </label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="date" th:field="*{dateOfBirth}" id="customerBirthday"/></label>
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Gender</label>
+                            <label>Facility Type</label>
                         </div>
                         <div class="col-md-6">
 
-                            <!--                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>-->
-                            <!--                                <label th:text="Male"></label>-->
-
-                            <!--                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>-->
-                            <!--                                <label th:text="Female"></label>-->
-
-
-                            <select id="customerGender" th:field="*{gender}">
-                                <option value="true">Male</option>
-                                <option value="false">Female</option>
-                            </select>
-
-
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>idCard</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{idCard}" id="customerIdCard"/></label>
-                            <p th:errors="*{idCard}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Phone Number</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{phoneNumber}" id="customerPhoneNumber"/></label>
-                            <p th:errors="*{phoneNumber}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{email}" id="customerEmail"/></label>
-                            <p th:errors="*{email}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Address</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label><input type="text" th:field="*{address}" id="customerAddress"/></label>
-                            <p th:errors="*{address}" class="text-danger"></p>
-
-                        </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-md-6">
-                            <label>Customer Type</label>
-                        </div>
-                        <div class="col-md-6">
-                            <select th:field="*{customerType}" id="customerType">
-                                <option th:each="customerType1:${customerTypeList}" th:value="${customerType1.id}"
-                                        th:text="${customerType1.name}">
-
+                            <select th:field="*{facilityType}" id="facilityTypeId" hidden>
+                                <option th:each="facilityType1:${facilityTypeList}" th:value="${facilityType1.id}"
+                                        th:text="${facilityType1.name}">
                                 </option>
                             </select>
+
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">CLOSE
-                    </button>
-                    <button type="submit" class="btn btn-primary">EDIT</button>
-                </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Service Name </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{name}" id="facilityName"/></label>
+                            <p th:errors="*{name}" class="text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Area</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{area}" id="facilityArea"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Cost</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{cost}" id="facilityCost"/></label>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Max people</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{maxPeople}" id="facilityMaxPeople"/></label>
+
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <label>Rent type</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:field="*{rentType}" id="facilityRentType">
+                                <option th:each="rentType:${rentTypeList}" th:value="${rentType.id}"
+                                        th:text="${rentType.name}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="row my-2" id="id-villa-house-standard-room">
+                        <div class="col-md-6" >
+                            <label>Standard room</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{standardRoom}" id="standardRoom"/></label>
+
+
+                        </div>
+                    </div>
+                    <div class="row my-2" id="id-villa-house-des">
+                        <div class="col-md-6">
+                            <label>Description other convenience</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{descriptionOtherConvenience}" id="description"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2" id="id-villa-pool-area">
+                        <div class="col-md-6">
+                            <label>Pool area</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{poolArea}" id="poolArea"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2" id="id-villa-house-number-floors">
+                        <div class="col-md-6">
+                            <label>Number floors</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{numberOfFloors}" id="numberOfFloors"/></label>
+                        </div>
+                    </div>
+                    <div class="row my-2" id="id-room-facility-free" >
+                        <div class="col-md-6">
+                            <label>Facility free</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="text" th:field="*{facilityFree}" id="facilityFree"/></label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">CLOSE
+                        </button>
+                        <button type="submit" class="btn btn-primary">EDIT</button>
+                    </div></div>
             </form>
         </div>
     </div>
 </div>
-
-
+<!--///end///-->
 
 
 <script>
-    function editCustomer(id, name, dateOfBirth, gender, idCard, phoneNumber, email, address, customerType) {
-        document.getElementById("customerId").value = id;
-        document.getElementById("customerName").value = name;
-        document.getElementById("customerBirthday").value = dateOfBirth;
-        document.getElementsByClassName("customerGender").value = gender;
-        document.getElementById("customerIdCard").value = idCard;
-        document.getElementById("customerPhoneNumber").value = phoneNumber;
-        document.getElementById("customerEmail").value = email;
-        document.getElementById("customerAddress").value = address;
-        document.getElementById("customerType").value = customerType;
+    function editFacility(id, name, area, cost, maxPeople, rentType, facilityTypeId,facilityTypeName, standardRoom, descriptionOtherConvenience,poolArea,numberOfFloors,facilityFree) {
+        document.getElementById("facilityId").value = id;
+        document.getElementById("facilityName").value = name;
+        document.getElementById("facilityArea").value = area;
+        document.getElementById("facilityCost").value = cost;
+        document.getElementById("facilityMaxPeople").value = maxPeople;
+        document.getElementById("facilityRentType").value = rentType;
+        document.getElementById("facilityTypeId").value = facilityTypeId;
+        document.getElementById("standardRoom").value = standardRoom;
+        document.getElementById("description").value = descriptionOtherConvenience;
+        document.getElementById("poolArea").value = poolArea;
+        document.getElementById("numberOfFloors").value = numberOfFloors;
+        document.getElementById("facilityFree").value = facilityFree;
+        document.getElementById("facilityTypeName").innerHTML = "<h1 style='text-align: center;color: blue' >"+ facilityTypeName+"</h1>";
+
+        showUpEditModal(facilityTypeId)
+
+
+
+
+    }
+    function showUpEditModal(value) {
+
+        if(value == 1){
+            $("#id-villa-house-des").show();
+            $("#id-villa-house-number-floors").show();
+            $("#id-villa-house-standard-room").show();
+            $("#id-villa-pool-area").show();
+            $("#id-room-facility-free").hide();
+        }
+        if(value == 3){
+            $("#id-room-facility-free").show();
+            $("#id-villa-house-des").hide();
+            $("#id-villa-house-number-floors").hide();
+            $("#id-villa-house-standard-room").hide();
+            $("#id-villa-pool-area").hide();
+        }
+        if(value == 2){
+            $("#id-villa-house-des").show();
+            $("#id-villa-house-number-floors").show();
+            $("#id-villa-house-standard-room").show();
+            $("#id-villa-pool-area").hide();
+            $("#id-room-facility-free").hide();
+
+        }
+
     }
 
-    // function editCustomer( name) {
-    //     // document.getElementById("customerId").value = id;
-    //     document.getElementById("customerName").innerHTML = "test abc" + name;
-    // }
 
 
 
@@ -430,6 +388,33 @@
         document.getElementById("deleteId").value = id;
 
     }
+    $(document).ready(function () {
+        $("#check").click(function () {
+            let value = $('#facilityTypeId').val();
+            if(value == 1){
+                $("#id-villa-house-des").show();
+                $("#id-villa-house-number-floors").show();
+                $("#id-villa-house-standard-room").show();
+                $("#id-villa-pool-area").show();
+                $("#id-room-facility-free").hide();
+            }
+            if(value == 3){
+                $("#id-room-facility-free").show();
+                $("#id-villa-house-des").hide();
+                $("#id-villa-house-number-floors").hide();
+                $("#id-villa-house-standard-room").hide();
+                $("#id-villa-pool-area").hide();
+            }
+            if(value == 2){
+                $("#id-villa-house-des").show();
+                $("#id-villa-house-number-floors").show();
+                $("#id-villa-house-standard-room").show();
+                $("#id-villa-pool-area").hide();
+                $("#id-room-facility-free").hide();
+
+            }
+        });
+    });
 
 </script>
 

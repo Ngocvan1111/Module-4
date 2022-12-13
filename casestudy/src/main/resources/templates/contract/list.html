@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/layout::header"></div>
+<div class="row"></div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table class="table">
+            <thead class="table-dark">
+            <th>#</th>
+            <th>Facility</th>
+            <th>Customer</th>
+            <th>Start day</th>
+            <th>End day</th>
+            <th>Deposit</th>
+            <th>Total amount</th>
+            <th colspan="2">Attach facility</th>
+            </thead>
+            <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td  style="width: 50px"><button   type="button" class="btn btn-primary">
+                +
+            </button></td>
+            <td style="width: 370px;text-align: center">
+                <button   type="button" class="btn btn-primary" style="width: 340px">
+                    Attach facility list
+                </button>
+            </td>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+
+
+</div>
+
+
+</body>
+</html>
