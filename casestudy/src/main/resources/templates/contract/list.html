@@ -22,30 +22,122 @@
             <th>Total amount</th>
             <th colspan="2">Attach facility</th>
             </thead>
-            <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td  style="width: 50px"><button   type="button" class="btn btn-primary">
-                +
-            </button></td>
-            <td style="width: 370px;text-align: center">
-                <button   type="button" class="btn btn-primary" style="width: 340px">
-                    Attach facility list
-                </button>
-            </td>
-            </tbody>
+            <th:block th:each="contract,stt : ${contractDtoList}">
+                <tbody>
+                <td th:text="${stt.count}"></td>
+                <td th:text="${contract.getFacility()}"></td>
+                <td th:text="${contract.getCustomer()}"></td>
+                <td th:text="${contract.getStartDate()}"></td>
+                <td th:text="${contract.getEndDate()}"></td>
+                <td th:text="${contract.getDeposit()}"></td>
+                <td th:text="${contract.getTotalAmount()}"></td>
+                <td style="width: 50px">
+                    <button type="button" class="btn btn-primary">
+                        +
+                    </button>
+                </td>
+                <td style="width: 370px;text-align: center">
+                    <button data-toggle="modal" data-target="#exampleModal" id="show" type="button"
+                            class="btn btn-primary" style="width: 340px" th:onclick="|(show('__${contract.getId()}__'))|">
+                        Attach facility list
+                    </button>
+                </td>
+                </tbody>
+            </th:block>
         </table>
+
+        <a  th:href="@{/contract(page=${contractDtoList.number - 1})}" th:if="${contractDtoList.hasPrevious()}"> <button type="button" class="btn btn-outline-success" >Previous</button></a>
+        <span th:text="${contractDtoList.number + 1}+'/'+${contractDtoList.totalPages}"></span>
+        <a th:href="@{/contract(page=${contractDtoList.number + 1})}" th:if="${contractDtoList.hasNext()}"> <button type="button" class="btn btn-outline-success" >Next</button></a>
+
+
+
     </div>
     <div class="col-md-1"></div>
+
+    <!--modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                            <th scope="col">#</th>
+                            <th scope="col">Contract Id</th>
+                            <th scope="col">Attach Facility Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myBody1">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
 
 
 </div>
 
+<script>
+    //////////////////////////////////////////////
 
+    function show(id) {
+        debugger
+        let myTable1 = "";
+        $("#myBody1").empty();
+        alert("11");
+        $.ajax({
+
+            url: 'http://localhost:8080/contract/list/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+
+                for (let i = 0; i < data.length; i++) {
+                    myTable1 +=
+                            `
+                     <tr>
+                         <th scope="row">${i+1}</th>
+                         <td>${data[i].contractId}</td>
+                         <td>${data[i].attachFacilityName}</td>
+                         <td>${data[i].status}</td>
+                         <td>${data[i].unit}</td>
+                         <td>${data[i].quantity}</td>
+                     </tr>
+                             `
+                }
+                debugger
+                $("#myBody1").append(myTable1);
+            }
+        })
+    }
+    /////
+
+
+</script>
 </body>
 </html>

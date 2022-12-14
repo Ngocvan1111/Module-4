@@ -1,17 +1,18 @@
 package com.casestudy.demo.dto;
 
+import com.casestudy.demo.model.contract.ContractDetail;
 import com.casestudy.demo.model.customer.Customer;
 import com.casestudy.demo.model.employee.Employee;
 import com.casestudy.demo.model.facility.Facility;
 import lombok.*;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 public class ContractDto {
     private Long id;
@@ -21,5 +22,5 @@ public class ContractDto {
     private Employee employee;
     private Customer customer;
     private Facility facility;
-    private Double totalAmount;
+    private List<ContractDetail> contractDetails;
 }
