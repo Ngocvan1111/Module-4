@@ -14,7 +14,7 @@ import java.util.List;
 public class AttachFacility {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private Double cost;
     private String unit;

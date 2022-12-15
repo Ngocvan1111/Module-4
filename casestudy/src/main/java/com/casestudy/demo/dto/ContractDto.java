@@ -16,8 +16,8 @@ import java.util.List;
 @Setter
 public class ContractDto {
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private Double deposit;
     private Employee employee;
     private Customer customer;

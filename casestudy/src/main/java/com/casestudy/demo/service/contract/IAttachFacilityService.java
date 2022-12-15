@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IAttachFacilityService {
     List<AttachFacilityDto> findAllByIdEqualContractId(Long id);
+    List<AttachFacility> findAll();
 }

@@ -2,6 +2,7 @@ package com.casestudy.demo.service.contract;
 
 import com.casestudy.demo.dto.ContractDt;
 
+import com.casestudy.demo.dto.ContractDto;
 import com.casestudy.demo.model.contract.AttachFacility;
 import com.casestudy.demo.model.contract.Contract;
 import com.casestudy.demo.repository.contract.IContractRepository;
@@ -18,6 +19,12 @@ public class ContractService implements IContractService {
     @Override
     public Page<ContractDt> findAll(Pageable pageable) {
         return iContractRepository.findContract(pageable);
+    }
+
+    @Override
+    public void save(Contract contract) {
+        iContractRepository.save(contract);
+
     }
 
 

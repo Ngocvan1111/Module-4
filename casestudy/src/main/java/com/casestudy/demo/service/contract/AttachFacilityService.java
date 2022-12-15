@@ -15,4 +15,9 @@ public class AttachFacilityService implements IAttachFacilityService {
     public List<AttachFacilityDto> findAllByIdEqualContractId(Long id) {
         return iAttachFacilityRepository.findAllByIdEqualContractId(id);
     }
+
+    @Override
+    public List<AttachFacility> findAll() {
+        return iAttachFacilityRepository.findAll();
+    }
 }

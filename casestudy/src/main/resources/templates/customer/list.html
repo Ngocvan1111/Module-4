@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--<html lang="en">-->
-<head th:insert="/layout::head">
+<head th:insert="/main::head">
     <style>
         *{
             box-sizing: border-box;
@@ -67,21 +67,10 @@
                             <label>Gender</label>
                         </div>
                         <div class="col-md-6">
-
-                            <!--                                <label ><input type="radio" th:field="*{gender}" th:value="true" class="customerGender" th:if="check == true" checked/></label>-->
-                            <!--                                <label th:text="Male"></label>-->
-
-                            <!--                                <label><input type="radio" th:field="*{gender}" th:value="false" class="customerGender" th:if="check == false" checked/></label>-->
-                            <!--                                <label th:text="Female"></label>-->
-
-
                             <select id="customerGender" th:field="*{gender}">
                                 <option value="true">Male</option>
                                 <option value="false">Female</option>
                             </select>
-
-
-
                         </div>
                     </div>
                     <div class="row my-2">
@@ -151,26 +140,7 @@
 
 
 <div id="main">
-    <div th:insert="/layout::header"></div>
-    <div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
-        <div class="col-md-2">
-            <a href="/customer/create" style="margin-left: 30px;margin-top: 20px" class="btn btn-primary">Add new Customer</a>
-        </div>
-        <div class="col-md-8">
-            <nav class="navbar navbar-expand-lg">
-                <div class="navbar-collapse">
-                    <ul id="menu-furama-vi" class="menu navbar-nav w-100 js-main-menu" style="margin: 0 20px">
-                        <li id="nav-menu-item-5007" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page" ><a href="/view/main.jsp" class="nav-link main-menu-link">HOME</a></li>
-                        <li id="nav-menu-item-5008" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/employees" class="nav-link main-menu-link">EMPLOYEE</a></li>
-                        <li id="nav-menu-item-5009" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/customer" class="nav-link main-menu-link">CUSTOMER</a></li>
-                        <li id="nav-menu-item-5010" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/service" class="nav-link main-menu-link">SERVICE</a></li>
-                        <li id="nav-menu-item-5011" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/contract" class="nav-link main-menu-link">CONTRACT</a></li>
-                    </ul>  </div>
-            </nav>
-        </div>
-        <div class="col-md-2"></div>
-
-    </div>
+    <div th:insert="/main::header"></div>
     <div class="row">
         <th:block th:if="${message}" >
             <h3 th:text="${message}" style="text-align: center;color: blue"></h3>
@@ -181,7 +151,7 @@
             <form class="d-flex" th:action="@{/customer}" style="margin: auto;margin-left: 40px">
                 <input class="form-control me-2" type="text" placeholder="Name" name="name" aria-label="Search">
                 <input class="form-control me-2" type="text" placeholder="Email" name="email" aria-label="Search">
-                <select name="customerType">
+                <select name="customerType" style="margin-right: 5px" >
                     <option value="-1">Select</option>
                     <option th:each="customerType: ${customerTypeList}"
                             th:selected="${customerType == customerType.id}" th:value="${customerType.id}"
@@ -193,12 +163,13 @@
         <div class="col-md-7">
             <h1 style="text-align: center;color: #ee00ff"> CUSTOMER LIST</h1>
         </div>
-        <div class="col-md-2 center-items">
+        <div class="col-md-2  " style="display: flex">
+            <a href="/customer/create" style="margin: auto"  class="btn btn-primary">Add new Customer</a>
         </div>
     </div>
     <div class="row mg-0" style="height: 70vh">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+
+        <div class="col-md-12">
             <table class="table table-success table-striped" style="height: 5px">
                 <tr>
                     <th>Stt</th>
@@ -247,14 +218,14 @@
             <a th:href="@{/customer(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">Next</a>
 
         </div>
-        <div class="col-md-1"></div>
+
 
 
     </div>
 
 
 
-    <footer th:replace="/layout::footer"></footer>
+    <footer th:replace="/main::footer"></footer>
 
 </div>
 <div class="modal fade" id="modalDelete" tabindex="-1"

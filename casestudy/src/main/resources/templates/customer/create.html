@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="/layout::head">
+<head th:insert="/main::head">
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
@@ -11,32 +11,10 @@
     </style>
 </head>
 <body>
-<div class="row mg-0 align-items-center" style="height: 10vh;background-color: bisque">
-    <div class="col-md-2">
-        <a href="/customer" style="margin-left: 30px;margin-top: 20px" class="button btn-danger">Back to Customer
-            List</a>
-    </div>
-    <div class="col-md-8">
-        <nav class="navbar navbar-expand-lg">
-            <div class="navbar-collapse">
-                <ul id="menu-furama-vi" class="menu navbar-nav w-100 js-main-menu">
-                    <li id="nav-menu-item-5007" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/view/main.jsp" class="nav-link main-menu-link">HOME</a></li>
-                    <li id="nav-menu-item-5008" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/employees" class="nav-link main-menu-link">EMPLOYEE</a></li>
-                    <li id="nav-menu-item-5009" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/customer" class="nav-link main-menu-link">CUSTOMER</a></li>
-                    <li id="nav-menu-item-5010" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/service" class="nav-link main-menu-link">SERVICE</a></li>
-                    <li id="nav-menu-item-5011" class="nav-item  menu-item-even menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="/contract" class="nav-link main-menu-link">CONTRACT</a></li>
-                </ul>                        </div>
-        </nav>
-    </div>
-    <div class="col-md-2">
-
-    </div>
-
-
-</div>
+<div th:insert="/main::header"></div>
 <div class="row mg-0" style="height: 70vh ">
-    <div class="col-md-5"></div>
-    <div class="col-md-3" style=" background-image: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE)">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style=" background-image: linear-gradient(#80FFDB, #64DFDF, #48BFE3, #5390D9, #5E60CE)">
         <form th:action="@{/customer/create}" th:object="${customerDto}" method="post"
               class="align-items-center; align-content-center">
             <div class="row my-3">
@@ -128,14 +106,14 @@
             <div class="row my-5">
                 <label style="text-align: center" ><input class="text-primary" type="submit" value="Create customer"/>
                 </label>
-
+            </div>
+            <div class="row my-5">
+                <label style="text-align: center" ><a href="/customer" style="margin-left: 30px;margin-top: 20px" class="text-dark">Back to Customer List</a>
+                </label>
             </div>
         </form>
-
+    </div>
 </div>
-</div>
 
-
-</div>
 </body>
 </html>

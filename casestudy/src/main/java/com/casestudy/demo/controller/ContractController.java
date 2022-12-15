@@ -4,8 +4,12 @@ import com.casestudy.demo.dto.ContractDt;
 
 import com.casestudy.demo.dto.ContractDto;
 import com.casestudy.demo.dto.CustomerDto;
+import com.casestudy.demo.model.contract.AttachFacility;
 import com.casestudy.demo.model.contract.Contract;
+import com.casestudy.demo.model.contract.ContractDetail;
 import com.casestudy.demo.model.customer.Customer;
+import com.casestudy.demo.service.contract.IAttachFacilityService;
+import com.casestudy.demo.service.contract.IContractDetailService;
 import com.casestudy.demo.service.contract.IContractService;
 import com.casestudy.demo.service.customer.ICustomerService;
 import com.casestudy.demo.service.employee.IEmployeeService;
@@ -36,10 +40,16 @@ public class ContractController {
     private IEmployeeService iEmployeeService;
     @Autowired
     private IFacilityService iFacilityService;
+    @Autowired
+    private IAttachFacilityService iAttachFacilityService;
+    @Autowired
+    private IContractDetailService iContractDetailService;
     @GetMapping("")
     public String getContractList(@PageableDefault(page = 0,size = 5)Pageable pageable, Model model){
         Page<ContractDt> contractDtoList = iContractService.findAll(pageable);
         model.addAttribute("contractDtoList",contractDtoList);
+        model.addAttribute("contractDetail", ContractDetail.builder().build());
+        model.addAttribute("attachFacilityList", iAttachFacilityService.findAll());
         return "contract/list";
     }
     @GetMapping("/create")
@@ -51,21 +61,21 @@ public class ContractController {
         modelAndView.addObject("facilityList",iFacilityService.findAllWithNoPage());
         return modelAndView;
     }
-//    @PostMapping("/create")
-//    public String saveCustomer(@Validated @ModelAttribute("customerDto") CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model){
-//
-//        if(bindingResult.hasErrors()){
-//            model.addAttribute("customerTypeList",iCustomerTypeService.findAll());
-//            model.addAttribute("hasErrors",true);
-//            model.addAttribute("customerDto",customerDto);
-//            return "customer/create";
-//        }
-//        Customer customer = new Customer();
-//        BeanUtils.copyProperties(customerDto,customer);
-//        iCustomerService.save(customer);
-//        redirectAttributes.addFlashAttribute("message","new Customer created successfully");
-//        return "redirect:/customer";
-//    }
+    @PostMapping("/create")
+    public String saveContract( @ModelAttribute("contractDto") ContractDto contractDto, RedirectAttributes redirectAttributes, Model model){
+
+        Contract contract = Contract.builder().build();
+        BeanUtils.copyProperties(contractDto,contract);
+        iContractService.save(contract);
+        redirectAttributes.addFlashAttribute("message","new Customer created successfully");
+        return "redirect:/contract";
+    }
+    @PostMapping("/contractDetail/create")
+    public String saveContractDetail( @ModelAttribute("contractDetail") ContractDetail contractDetail, RedirectAttributes redirectAttributes, Model model){
+        iContractDetailService.save(contractDetail);
+        redirectAttributes.addFlashAttribute("message","new Customer created successfully");
+        return "redirect:/contract";
+    }
 
 
 

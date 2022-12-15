@@ -21,8 +21,10 @@ public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    @Column(columnDefinition = "date")
+    private String startDate;
+    @Column(columnDefinition = "date")
+    private String endDate;
     private Double deposit;
     @ManyToOne()
     @JoinColumn(name = "employee_id",referencedColumnName = "id")
