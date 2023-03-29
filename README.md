@@ -1,4 +1,6 @@
-git clone: https://github.com/Ngocvan1111/Module-4.git                                                                                                          
+GUIDE TO RUN THIS PROJECT:
+
+Git clone: https://github.com/Ngocvan1111/Module-4.git                                                                                                          
 
 Setup DB (using MySQL Workbench):                                                                                                                                       
 
