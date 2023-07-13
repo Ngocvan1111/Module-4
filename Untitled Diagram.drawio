@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-07-13T04:09:40.662Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0" etag="d0rMD0KXPEIwAJyXpnXp" version="21.6.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-13T04:30:45.688Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0" etag="rPDzkj5CH3BYStvDZ-b0" version="21.6.1" type="github">
   <diagram name="Page-1" id="zQvrsa_LNWWRSQABn7Fb">
-    <mxGraphModel dx="4893" dy="829" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+    <mxGraphModel dx="6168" dy="1492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -14,6 +14,9 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-120" y="960" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="_9pvVLFJd0tGa-DbQn_L-150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="_9pvVLFJd0tGa-DbQn_L-1" target="_9pvVLFJd0tGa-DbQn_L-149">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_9pvVLFJd0tGa-DbQn_L-1" value="write_intraday_schedules_parallell.pl&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;labelBackgroundColor=none;labelBorderColor=none;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry y="880" width="250" height="20" as="geometry" />
@@ -166,7 +169,7 @@
         <mxCell id="_9pvVLFJd0tGa-DbQn_L-49" value="parameter cung cấp cho script" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="900" y="210" width="250" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="_9pvVLFJd0tGa-DbQn_L-71" value="&lt;div&gt;updatate&amp;nbsp; &#39;Netting timestamp &#39; in table :&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;st_intraday_flow_conf&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;st_kunden_rolle&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="_9pvVLFJd0tGa-DbQn_L-71" value="&lt;div&gt;updatate&amp;nbsp; &#39;Netting timestamp &#39; in table :&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;st_intraday_flow_conf&lt;/div&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;&lt;div style=&quot;font-family: &amp;quot;JetBrains Mono&amp;quot;, monospace; font-size: 9.8pt;&quot;&gt;st_kunden_rolle&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" vertex="1" parent="1">
           <mxGeometry x="-380" y="940" width="260" height="170" as="geometry" />
         </mxCell>
         <mxCell id="_9pvVLFJd0tGa-DbQn_L-75" value="INPUT" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=35;fontColor=#12FF22;" vertex="1" parent="1">
@@ -340,6 +343,9 @@
         </mxCell>
         <mxCell id="_9pvVLFJd0tGa-DbQn_L-148" value="OUTPUT" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=35;fontColor=#12FF22;" vertex="1" parent="1">
           <mxGeometry x="-450" y="50" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_9pvVLFJd0tGa-DbQn_L-149" value="Insert into table &quot;st_intra_kunden_fahrplan&quot;, &quot;st_intra_kunden_fahrplan&quot;" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#b0e3e6;strokeColor=#0e8088;" vertex="1" parent="1">
+          <mxGeometry x="-360" y="600" width="260" height="170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
